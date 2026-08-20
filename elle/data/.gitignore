@@ -1,0 +1,9 @@
+# Dossier de données local : base SQLite + contenus téléversés.
+# Le serveur recrée le contenu de démonstration tout seul au premier lancement.
+# Le .gitkeep garantit que le dossier existe à la construction, sinon le moteur
+# SQLite refuse d'ouvrir la base.
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+!*.gitkeep

@@ -75,6 +75,15 @@ sans eux, ils répondent une erreur réseau claire plutôt que de planter.
 `Ctrl+C` dans chacun des trois terminaux (ou `pkill -f "node server.js"` /
 `pkill -f uvicorn`).
 
+## Déploiement public du site
+
+Le site **`elle/`** se déploie seul (Blueprint Render : `render.yaml` à la
+racine, disque persistant sur `elle/data`). Voir la section *Déploiement en
+ligne* dans `elle/README.md`. Le site public inclut un **espace communauté**
+(inscription des visiteurs, dépôt d'idées/bugs via `/contribuer`, messages de
+contact) ; l'Atelier reste réservé au rôle administrateur. Les services
+`elle-mcp-server` et `elle-agents` restent des outils **locaux** non déployés.
+
 ## Ce qui a été vérifié pour de vrai avant cette livraison
 
 Les trois services ont réellement tourné ensemble le temps de cette

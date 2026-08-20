@@ -4,6 +4,9 @@
   "private": true,
   "description": "Elle — blog magazine (Node + SQLite), pensé pour fonctionner dans Termux sur Android.",
   "main": "server.js",
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "start": "node server.js"
   },

@@ -28,11 +28,36 @@ Changer le port : `PORT=8080 node server.js`
 
 ---
 
+## Déploiement en ligne (Render)
+
+Le site est un **serveur Node de longue durée** avec une base **SQLite en
+fichier** : il lui faut un hébergeur avec disque persistant. Render convient.
+
+1. Poussez ce dépôt sur GitHub (la base `elle/data/elle.db` et les fichiers
+   `.env` ne sont **pas** versionnés — `seed()` recrée le contenu de démo).
+2. Dashboard Render → **New → Blueprint** → connectez le dépôt. Le fichier
+   `render.yaml` à la racine décrit le service `elle` et monte un disque
+   persistant sur `elle/data`.
+3. Déployé, ouvrez `https://<service>.onrender.com/admin` : le **premier
+   accès** crée le compte administrateur.
+4. Réglages recommandés dans l'onglet Environment du service :
+   - `AUTH_SECRET` : une longue chaîne aléatoire (sécurise les sessions).
+   - `ANTHROPIC_API_KEY` (facultatif) si vous voulez l'onglet « Rapide ».
+
+> Node ≥ 22.13 requis (SQLite intégré sans drapeau). Le `render.yaml` fixe
+> `NODE_VERSION=22.13.0`.
+
+---
+
 ## Ce que contient le site
 
 - **Accueil** : un **héro** configurable, des **carrousels** (Blog, Projets, Podcasts) et un **espace Questions**.
 - **Quatre types de contenus**, avec chacun sa page de liste (`/blog`, `/projects`, `/podcasts`, `/courses`) :
   chaque contenu se crée avec le même éditeur en blocs et peut être mis **en vedette**.
+- **Espace communauté** (`/contribuer`) : les visiteurs créent un petit compte, déposent une **idée**,
+  un **bug** ou une **suggestion**, et suivent leurs contributions dans « Mon espace ». L'Atelier reste
+  réservé au **rôle administrateur** — les comptes « visiteur » n'y ont aucun accès. Côté atelier,
+  **Contributions** et **Messages** permettent de modérer le tout.
 - **Pages fixes** centrées (À propos, Contact…), modifiables dans l'atelier.
 - **Espace Questions** (accordéon) entièrement éditable.
 - **Assistant IA** dans l'atelier pour trouver et structurer des idées (voir plus bas).

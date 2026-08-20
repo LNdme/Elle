@@ -1,0 +1,37 @@
+# Render Blueprint — déploie le site public « Elle ».
+#
+# Le service est un serveur Node de longue durée qui stocke tout dans une base
+# SQLite (fichier). Un disque persistant est monté sur elle/data pour que le
+# contenu, les utilisateurs et les téléversements survivent aux redéploiements.
+#
+# Connexion dans le dashboard Render :
+#   New → Blueprint → sélectionnez ce dépôt GitHub.
+#
+# Après le premier déploiement, ouvrez https://<votre-service>.onrender.com/admin
+# pour créer le compte administrateur (le site n'a alors aucun utilisateur).
+
+services:
+  - type: web
+    name: elle
+    runtime: node
+    rootDir: elle
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    plan: free
+    disk:
+      name: elle-data
+      mountPath: /opt/render/project/src/elle/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 22.13.0
+      # Sécurité : générez une valeur longue et unique, puis passez-la en
+      # « secret » dans l'onglet Environment du service (jamais dans le code).
+      - key: AUTH_SECRET
+        sync: false
+      # Facultatif — clé Anthropic pour l'assistant de l'Atelier.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ELLE_AGENT_TOKEN
+        sync: false
