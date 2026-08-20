@@ -19,6 +19,11 @@ services:
     startCommand: npm start
     healthCheckPath: /
     plan: free
+    # ⚠️ Les disques (disk) ne sont PAS inclus dans le plan gratuit Render :
+    # passerez au plan Starter (ou supérieur) pour que le bloc disk ci-dessous
+    # soit provisionné. Sans lui (plan gratuit), sur le volume éphémère, le
+    # contenu et les comptes réapparaissent de zéro à chaque redéploiement
+    # (seed()) — adapté à une simple démo.
     disk:
       name: elle-data
       mountPath: /opt/render/project/src/elle/data

@@ -36,8 +36,9 @@ fichier** : il lui faut un hébergeur avec disque persistant. Render convient.
 1. Poussez ce dépôt sur GitHub (la base `elle/data/elle.db` et les fichiers
    `.env` ne sont **pas** versionnés — `seed()` recrée le contenu de démo).
 2. Dashboard Render → **New → Blueprint** → connectez le dépôt. Le fichier
-   `render.yaml` à la racine décrit le service `elle` et monte un disque
-   persistant sur `elle/data`.
+   `render.yaml` à la racine décrit le service `elle` ; un disque persistant
+   (`elle/data`) est prévu — il nécessite un plan payant Render (le plan
+   gratuit redémarre de zéro à chaque redéploiement).
 3. Déployé, ouvrez `https://<service>.onrender.com/admin` : le **premier
    accès** crée le compte administrateur.
 4. Réglages recommandés dans l'onglet Environment du service :
