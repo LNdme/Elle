@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "elle",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["server.js"],
+      "cwd": "elle",
+      "port": 3000,
+      "autoPort": false
+    },
+    {
+      "name": "elle-mcp-server",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["server.js"],
+      "cwd": "elle-mcp-server",
+      "port": 3001,
+      "autoPort": false
+    },
+    {
+      "name": "elle-agents",
+      "runtimeExecutable": ".venv/Scripts/uvicorn.exe",
+      "runtimeArgs": ["main:app", "--host", "0.0.0.0", "--port", "8001"],
+      "cwd": "elle-agents",
+      "port": 8001,
+      "autoPort": false
+    }
+  ]
+}

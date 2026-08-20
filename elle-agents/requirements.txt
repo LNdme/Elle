@@ -1,0 +1,16 @@
+google-adk
+mcp
+# Pin >=1.83.0 : exclut explicitement 1.82.7 et 1.82.8, deux versions
+# compromises publiées sur PyPI le 24 mars 2026 (vol d'identifiants,
+# incident largement documenté). Le paquet a été mis en quarantaine le
+# jour même, donc une installation aujourd'hui est sûre par défaut — ce
+# pin est une protection supplémentaire bon marché, pas une urgence.
+litellm>=1.83.0
+fastapi
+uvicorn[standard]
+python-dotenv
+requests
+
+# --- tests uniquement ---
+pytest
+pytest-asyncio

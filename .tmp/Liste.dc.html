@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAF6EF}</style>
+</helmet>
+<div data-screen-label="Liste — Projets" style="background:#FAF6EF;min-height:100vh;font-family:'Outfit',system-ui,-apple-system,sans-serif;color:#1B1712">
+
+  <dc-import name="SiteHeader" active="projects" hint-size="100%,112px"></dc-import>
+
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px 60px">
+
+    <div style="display:flex;align-items:baseline;gap:14px;margin:34px 0 20px">
+      <h1 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Projets</h1>
+      <span style="height:1px;background:#EAE0D2;flex:1"></span>
+    </div>
+
+    <div style="display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;margin-bottom:6px">
+      <a href="#" style="flex:0 0 auto;font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;background:#1B1712;color:#FAF6EF;text-decoration:none;white-space:nowrap">Tous</a>
+      <a href="#" style="flex:0 0 auto;font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;border:1px solid #EAE0D2;background:#FFFFFF;color:#6E6259;text-decoration:none;white-space:nowrap">IA</a>
+      <a href="#" style="flex:0 0 auto;font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;border:1px solid #EAE0D2;background:#FFFFFF;color:#6E6259;text-decoration:none;white-space:nowrap">Produit</a>
+      <a href="#" style="flex:0 0 auto;font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;border:1px solid #EAE0D2;background:#FFFFFF;color:#6E6259;text-decoration:none;white-space:nowrap">Outil interne</a>
+      <a href="#" style="flex:0 0 auto;font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;border:1px solid #EAE0D2;background:#FFFFFF;color:#6E6259;text-decoration:none;white-space:nowrap">Sécurité</a>
+      <a href="#" style="flex:0 0 auto;font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;border:1px solid #EAE0D2;background:#FFFFFF;color:#6E6259;text-decoration:none;white-space:nowrap">Fonctionnalité</a>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:4px 0 10px;font-size:13px;color:#6E6259">
+      Trier&nbsp;:
+      <span style="display:inline-flex;background:#F2E8D9;border-radius:999px;padding:3px">
+        <span style="background:#FFFFFF;color:#1B1712;font-weight:600;font-size:12.5px;padding:7px 13px;border-radius:999px;box-shadow:0 1px 2px rgba(26,22,19,.06)">Récents</span>
+        <span style="color:#6E6259;font-weight:600;font-size:12.5px;padding:7px 13px;border-radius:999px">Populaires</span>
+        <span style="color:#6E6259;font-weight:600;font-size:12.5px;padding:7px 13px;border-radius:999px">Anciens</span>
+      </span>
+    </div>
+
+    <div style="margin-top:8px">
+      <sc-for list="{{ items }}" as="item" hint-placeholder-count="5">
+        <a href="Article.dc.html" style="display:grid;grid-template-columns:1fr 168px;gap:20px;padding:24px 0;border-top:1px solid #EAE0D2;text-decoration:none;color:inherit;align-items:start">
+          <div>
+            <div style="font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FF6A1A;margin-bottom:8px">{{ item.category }}</div>
+            <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:22px;line-height:1.2;letter-spacing:-.2px;margin:0 0 8px">{{ item.title }}</h3>
+            <p style="color:#6E6259;font-size:14.5px;line-height:1.5;margin:0 0 11px">{{ item.excerpt }}</p>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:#A89C8F;font-size:13px;font-weight:500">
+              <span>{{ item.date }}</span><span>·</span>
+              <span style="display:inline-flex;align-items:center;gap:5px;font-weight:700;color:#6E6259">👁 {{ item.views }}</span><span>·</span>
+              <span style="display:inline-flex;align-items:center;gap:5px;font-weight:600;color:#6E6259">⏱ {{ item.readTime }}</span>
+            </div>
+          </div>
+          <div style="width:168px;height:120px;border-radius:12px;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:9.5px;text-align:center;padding:6px">{{ item.phLabel }}</div>
+        </a>
+      </sc-for>
+    </div>
+
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,140px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:1100}}">
+class Component extends DCLogic {
+  renderVals(){
+    const items = [
+      { title:"Agents de rédaction pour l’Atelier", category:"IA", excerpt:"Quatre agents spécialisés qui proposent un brouillon structuré pendant la conversation.", date:"Il y a 6 jours", views:142, readTime:"5 min", phLabel:"APERÇU · PROJET" },
+      { title:"Elle — un journal qui tourne sur un téléphone", category:"Produit", excerpt:"Le site et son atelier de rédaction, sans dépendance obligatoire, pensés pour Termux.", date:"Il y a 15 jours", views:389, readTime:"6 min", phLabel:"APERÇU · PROJET" },
+      { title:"Minuteur de rédaction pour l’Atelier", category:"Outil interne", excerpt:"Un petit minuteur Pomodoro glissé dans l’éditeur, pour cadrer les sessions d’écriture.", date:"Il y a 24 jours", views:76, readTime:"2 min", phLabel:"APERÇU · PROJET" },
+      { title:"Migration de l’authentification PIN vers comptes", category:"Sécurité", excerpt:"Passer d’un simple code à des comptes complets, sans casser les bases existantes.", date:"Il y a 31 jours", views:58, readTime:"4 min", phLabel:"APERÇU · PROJET" },
+      { title:"Export PDF des articles longs", category:"Fonctionnalité", excerpt:"Relire hors-ligne : transformer un article en document imprimable proprement.", date:"Il y a 40 jours", views:103, readTime:"3 min", phLabel:"APERÇU · PROJET" }
+    ];
+    return { items };
+  }
+}
+
+</script>
+</body>
+</html>

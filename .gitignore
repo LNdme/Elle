@@ -1,0 +1,17 @@
+# SQLite : la base locale contient des secrets (auth_secret, clés API).
+# Rien de tout ça ne doit être publié — le serveur recréé le contenu seul (seed()).
+elle/data/*.db
+elle/data/*.db-shm
+elle/data/*.db-wal
+elle/data/*.db-journal
+
+# Secrets & config locale
+.env
+!.env.example
+elle-agents/models-cache/
+
+# Runtime
+node_modules/
+*.log
+.venv/
+__pycache__/

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAF6EF}
+@keyframes ink-breathe{0%,100%{opacity:.3;transform:scale(.85)}50%{opacity:1;transform:scale(1)}}
+</style>
+</helmet>
+<div data-screen-label="Agents" style="background:#FAF6EF;min-height:100vh;font-family:'Outfit',system-ui,-apple-system,sans-serif;color:#1B1712">
+
+  <!-- ================= ADMIN BAR ================= -->
+  <header style="position:sticky;top:0;z-index:30;background:#1B1712;color:#F5EEE4">
+    <div style="max-width:1560px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <a href="Home.dc.html" style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:700;font-size:21px;letter-spacing:-.2px;text-decoration:none;color:#F5EEE4;display:flex;align-items:baseline;gap:9px">E.<small style="font-family:'Outfit',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9C8F80;font-style:normal">Atelier</small></a>
+      <nav style="display:flex;gap:3px;align-items:center;overflow-x:auto">
+        <a href="#" style="color:#9C8F80;text-decoration:none;font-weight:600;font-size:13px;padding:8px 11px;border-radius:8px;white-space:nowrap">Tableau de bord</a>
+        <a href="#" style="color:#9C8F80;text-decoration:none;font-weight:600;font-size:13px;padding:8px 11px;border-radius:8px;white-space:nowrap">Pages</a>
+        <a href="#" style="color:#9C8F80;text-decoration:none;font-weight:600;font-size:13px;padding:8px 11px;border-radius:8px;white-space:nowrap">Questions</a>
+        <a href="#" style="color:#F5EEE4;background:rgba(255,255,255,.09);text-decoration:none;font-weight:600;font-size:13px;padding:8px 11px;border-radius:8px;white-space:nowrap">Agents</a>
+        <a href="#" style="color:#9C8F80;text-decoration:none;font-weight:600;font-size:13px;padding:8px 11px;border-radius:8px;white-space:nowrap">Réglages</a>
+        <a href="Home.dc.html" style="color:#9C8F80;text-decoration:none;font-weight:600;font-size:13px;padding:8px 11px;border-radius:8px;white-space:nowrap">Voir le site</a>
+        <a href="#" style="background:#FF6A1A;color:#fff;text-decoration:none;font-weight:700;font-size:13px;padding:8px 13px;border-radius:8px;white-space:nowrap">+ Article</a>
+        <a href="#" style="display:inline-grid;place-items:center;width:34px;height:34px;color:#9C8F80;font-size:14px;border-radius:8px;text-decoration:none">🔒</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width:1560px;margin:0 auto;padding:0 32px 80px">
+
+    <div style="padding:28px 0 6px;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap">
+      <div>
+        <h1 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:700;font-size:33px;letter-spacing:-.3px;margin:0 0 6px">Agents</h1>
+        <p style="color:#6E6259;margin:0;font-size:14.5px">Discutez avec l’assistant rapide, ou avec les agents spécialisés qui peuvent créer ou mettre à jour un brouillon eux-mêmes.</p>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div style="display:inline-flex;background:#F2E8D9;border-radius:999px;padding:4px;margin:22px 0 26px;gap:2px">
+      <button type="button" style="border:0;background:transparent;color:#6E6259;font-weight:600;font-size:13.5px;padding:9px 17px;border-radius:999px;font-family:inherit">Rapide</button>
+      <button type="button" style="border:0;background:transparent;color:#6E6259;font-weight:600;font-size:13.5px;padding:9px 17px;border-radius:999px;font-family:inherit">Blog</button>
+      <button type="button" style="border:0;background:transparent;color:#6E6259;font-weight:600;font-size:13.5px;padding:9px 17px;border-radius:999px;font-family:inherit">Notes de cours</button>
+      <button type="button" style="border:0;background:transparent;color:#6E6259;font-weight:600;font-size:13.5px;padding:9px 17px;border-radius:999px;font-family:inherit">Création de cours</button>
+      <button type="button" style="border:0;background:#FFFFFF;color:#1B1712;font-weight:700;font-size:13.5px;padding:9px 17px;border-radius:999px;box-shadow:0 1px 2px rgba(26,22,19,.08);font-family:inherit">Projet</button>
+    </div>
+
+    <!-- ================= ENLARGED AGENT LAYOUT (chat 360px · canvas 1fr, wide container) ================= -->
+    <div style="display:grid;grid-template-columns:360px 1fr;gap:32px;align-items:start">
+
+      <!-- Chat column -->
+      <div style="min-width:0">
+        <div style="color:#6E6259;font-size:13px;background:#FDFAF5;border:1px solid #EAE0D2;border-radius:14px;padding:12px 14px;margin-bottom:14px;line-height:1.55">L’agent <strong>Projet</strong> pose d’abord une question de cadrage, puis construit le brouillon dans le Canevas au fil de l’échange.</div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:14px">
+          <div style="display:flex"><div style="max-width:92%;padding:12px 15px;border-radius:16px;border-bottom-left-radius:5px;font-size:14.5px;line-height:1.6;background:#FFFFFF;border:1px solid #EAE0D2;color:#1B1712">Parlons de ton projet. Pour bien cadrer le brouillon&nbsp;: quel est l’objectif principal en le documentant&nbsp;?</div></div>
+
+          <div style="display:flex;justify-content:flex-end"><div style="max-width:92%;padding:12px 15px;border-radius:16px;border-bottom-right-radius:5px;font-size:14.5px;line-height:1.6;background:#FF6A1A;color:#fff">Je veux surtout documenter comment j’ai construit les agents de rédaction, pour m’en souvenir et écrire un post plus tard.</div></div>
+
+          <div style="display:flex"><div style="max-width:92%;padding:12px 15px;border-radius:16px;border-bottom-left-radius:5px;font-size:14.5px;line-height:1.6;background:#FFFFFF;border:1px solid #EAE0D2;color:#1B1712">Parfait — je pars sur un ton documentation technique. Je te propose une première version à côté, dans le Canevas&nbsp;→</div></div>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:flex-end">
+          <span style="width:38px;height:38px;flex:0 0 38px;border-radius:50%;border:1px solid #EAE0D2;background:#FFFFFF;display:grid;place-items:center;font-size:14px">📎</span>
+          <div style="flex:1;border:1px solid #EAE0D2;background:#FDFAF5;border-radius:11px;padding:11px 13px;font-size:14.5px;color:#A89C8F">Écrire un message…</div>
+          <span style="width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:#FF6A1A;color:#fff;display:grid;place-items:center;font-size:15px">↑</span>
+        </div>
+      </div>
+
+      <!-- Canvas column (enlarged) -->
+      <aside style="background:#FFFFFF;border:1px solid #EAE0D2;border-radius:18px;box-shadow:0 20px 44px rgba(26,22,19,.10);padding:36px 40px;position:sticky;top:84px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:22px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FF6A1A">Projet</span>
+          <span style="margin-left:auto;font-size:12px;color:#A89C8F;display:flex;align-items:center;gap:7px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#FF6A1A;animation:ink-breathe 1.4s ease-in-out infinite"></span>Brouillon · mis à jour à l’instant</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 200px;gap:36px;align-items:start">
+          <div style="min-width:0;max-width:680px">
+            <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:700;font-size:29px;margin:0 0 20px;line-height:1.2;letter-spacing:-.3px">Agents de rédaction pour l’Atelier</h3>
+
+            <h4 style="font-weight:800;font-size:16px;letter-spacing:-.1px;margin:0 0 10px;color:#1B1712">Pourquoi ce projet</h4>
+            <p style="font-size:15.5px;line-height:1.72;color:#1B1712;margin:0 0 22px">Documenter la conception des quatre agents spécialisés (Blog, Notes de cours, Création de cours, Projet) qui proposent des brouillons structurés pendant la conversation, sans jamais rien publier automatiquement.</p>
+
+            <h4 style="font-weight:800;font-size:16px;letter-spacing:-.1px;margin:0 0 10px;color:#1B1712">Comment ça marche</h4>
+            <p style="font-size:15.5px;line-height:1.72;color:#1B1712;margin:0 0 14px">Chaque agent relaie ses actions via quatre outils MCP — <em>create_draft</em>, <em>list_content</em>, <em>get_content</em>, <em>search_content</em> — exposés par un petit serveur relais entre l’Atelier et le service d’agents.</p>
+            <ul style="margin:0 0 4px;padding-left:1.2em;font-size:15.5px;line-height:1.7;color:#1B1712">
+              <li>Toujours en statut brouillon, jamais publié seul</li>
+              <li>Le Canevas se met à jour au fil de la conversation</li>
+              <li>Une question de cadrage à choix ouvre l’échange</li>
+            </ul>
+          </div>
+
+          <div style="border-left:1px solid #EAE0D2;padding-left:28px">
+            <div style="margin-bottom:18px">
+              <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A89C8F;margin-bottom:6px">Statut</div>
+              <span style="display:inline-block;font-size:12px;font-weight:700;color:#B8490C;background:#FDE6D2;padding:4px 10px;border-radius:999px">Brouillon</span>
+            </div>
+            <div style="margin-bottom:18px">
+              <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A89C8F;margin-bottom:6px">Mots</div>
+              <div style="font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:22px;color:#1B1712">182</div>
+            </div>
+            <div style="margin-bottom:22px">
+              <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A89C8F;margin-bottom:6px">Mis à jour</div>
+              <div style="font-size:13.5px;font-weight:600;color:#6E6259">à l’instant</div>
+            </div>
+            <div style="padding-top:18px;border-top:1px solid #EAE0D2">
+              <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FF6A1A;margin-bottom:9px">Sources consultées</div>
+              <ul style="margin:0;padding-left:16px">
+                <li style="font-size:12.5px;margin-bottom:7px;color:#6E6259">README — elle-agents</li>
+                <li style="font-size:12.5px;margin-bottom:0;color:#6E6259">CHANGES.md — contrat Canevas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1680,&quot;height&quot;:1000}}"></script>
+</body>
+</html>

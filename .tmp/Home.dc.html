@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAF6EF}</style>
+</helmet>
+<div data-screen-label="Home" style="background:#FAF6EF;min-height:100vh;font-family:'Outfit',system-ui,-apple-system,sans-serif;color:#1B1712">
+
+  <dc-import name="SiteHeader" active="home" hint-size="100%,112px"></dc-import>
+
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px 40px">
+
+    <!-- ================= HERO ================= -->
+    <section style="padding:76px 0 34px;text-align:center">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FF6A1A;margin-bottom:20px">Elle — journal personnel</div>
+      <h1 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(40px,6.2vw,80px);line-height:1.04;letter-spacing:-1px;margin:0 auto;max-width:17ch">Construire en public, une note à la fois.</h1>
+      <p style="color:#6E6259;font-size:18px;line-height:1.6;max-width:52ch;margin:22px auto 30px">Articles, projets, podcasts et notes de cours&nbsp;— tout ce que j’apprends et que je fabrique, réuni au même endroit.</p>
+      <a href="Library.dc.html" style="display:inline-flex;align-items:center;gap:9px;background:#FF6A1A;color:#fff;font-weight:600;font-size:15.5px;padding:14px 27px;border-radius:11px;text-decoration:none">Explorer la Library <span>→</span></a>
+
+      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:42px">
+        <a href="#blog" style="display:inline-flex;align-items:center;gap:8px;border:1px solid #EAE0D2;background:#FFFFFF;border-radius:999px;padding:9px 16px 9px 13px;text-decoration:none;color:#1B1712;font-size:13px;font-weight:600">
+          <span style="width:7px;height:7px;border-radius:50%;background:#FF6A1A;display:inline-block"></span>Blog
+        </a>
+        <a href="#projets" style="display:inline-flex;align-items:center;gap:8px;border:1px solid #EAE0D2;background:#FFFFFF;border-radius:999px;padding:9px 16px 9px 13px;text-decoration:none;color:#1B1712;font-size:13px;font-weight:600">
+          <span style="width:7px;height:7px;background:#FF6A1A;display:inline-block;transform:rotate(45deg)"></span>Projets
+        </a>
+        <a href="#podcasts" style="display:inline-flex;align-items:center;gap:8px;border:1px solid #EAE0D2;background:#FFFFFF;border-radius:999px;padding:9px 16px 9px 13px;text-decoration:none;color:#1B1712;font-size:13px;font-weight:600">
+          <span style="width:13px;height:13px;border-radius:50%;background:#FF6A1A;display:inline-flex;align-items:center;justify-content:center"><span style="width:0;height:0;border-top:3px solid transparent;border-bottom:3px solid transparent;border-left:5px solid #fff;margin-left:1px"></span></span>Podcasts
+        </a>
+        <a href="#cours" style="display:inline-flex;align-items:center;gap:8px;border:1px solid #EAE0D2;background:#FFFFFF;border-radius:999px;padding:9px 16px 9px 13px;text-decoration:none;color:#1B1712;font-size:13px;font-weight:600">
+          <span style="width:7px;height:7px;border-radius:2px;background:#FF6A1A;display:inline-block"></span>Cours
+        </a>
+      </div>
+      <div style="height:1px;background:#EAE0D2;margin-top:46px"></div>
+    </section>
+
+    <!-- ================= BLOG (rail) ================= -->
+    <section id="blog" style="margin:8px 0 8px">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap">
+        <span style="width:9px;height:9px;border-radius:50%;background:#FF6A1A;display:inline-block;flex:0 0 auto"></span>
+        <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Blog</h2>
+        <span style="height:1px;background:#EAE0D2;flex:1"></span>
+        <a href="Liste.dc.html" style="font-size:12.5px;font-weight:700;color:#B8490C;text-decoration:none;white-space:nowrap">Tout voir →</a>
+      </div>
+      <p style="color:#A89C8F;font-size:14px;margin:0 0 22px">Réflexions et notes d’apprentissage.</p>
+
+      <div style="display:flex;gap:18px;overflow-x:auto;padding:4px 2px 12px">
+        <sc-for list="{{ blogItems }}" as="item" hint-placeholder-count="3">
+          <a href="Article.dc.html" style="flex:0 0 300px;text-decoration:none;color:inherit;background:#FFFFFF;border:1px solid #EAE0D2;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(26,22,19,.04);display:flex;flex-direction:column">
+            <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.05em">{{ item.phLabel }}</div>
+            <div style="padding:16px 17px 19px">
+              <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FF6A1A;margin-bottom:7px">{{ item.category }}</div>
+              <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:20px;line-height:1.2;margin:0 0 8px">{{ item.title }}</h3>
+              <p style="color:#6E6259;font-size:13.5px;line-height:1.5;margin:0 0 13px">{{ item.excerpt }}</p>
+              <div style="color:#A89C8F;font-size:12px;font-weight:500;display:flex;gap:8px;align-items:center">
+                <span>{{ item.date }}</span><span>·</span><span>{{ item.readTime }}</span>
+              </div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ================= PROJETS (feature grid) ================= -->
+    <section id="projets" style="margin:56px 0 8px">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap">
+        <span style="width:9px;height:9px;background:#FF6A1A;display:inline-block;transform:rotate(45deg);flex:0 0 auto"></span>
+        <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Projets</h2>
+        <span style="height:1px;background:#EAE0D2;flex:1"></span>
+        <a href="Liste.dc.html" style="font-size:12.5px;font-weight:700;color:#B8490C;text-decoration:none;white-space:nowrap">Tout voir →</a>
+      </div>
+      <p style="color:#A89C8F;font-size:14px;margin:0 0 22px">Ce que je construis, du prototype au produit.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:22px">
+        <sc-for list="{{ projectItems }}" as="item" hint-placeholder-count="2">
+          <a href="Article.dc.html" style="text-decoration:none;color:inherit;background:#FFFFFF;border:1.5px solid #1B1712;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em">{{ item.phLabel }}</div>
+            <div style="padding:20px 22px 24px">
+              <span style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.04em;color:#B8490C;background:#FDE6D2;padding:4px 10px;border-radius:999px;margin-bottom:12px">{{ item.stack }}</span>
+              <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:24px;margin:0 0 10px;line-height:1.15">{{ item.title }}</h3>
+              <p style="color:#6E6259;font-size:14px;line-height:1.55;margin:0 0 14px">{{ item.excerpt }}</p>
+              <span style="font-size:13px;font-weight:700;color:#B8490C">Voir le projet →</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ================= PODCASTS (full-bleed band, episode rows) ================= -->
+    <section id="podcasts" style="margin:56px 0 0;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);width:100vw;background:#F2E8D9;padding:50px 0">
+      <div style="max-width:1180px;margin:0 auto;padding:0 32px">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap">
+          <span style="width:20px;height:20px;border-radius:50%;background:#FF6A1A;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto"><span style="width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:7px solid #fff;margin-left:2px"></span></span>
+          <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Podcasts</h2>
+          <span style="height:1px;background:#E4D5BE;flex:1"></span>
+          <a href="Liste.dc.html" style="font-size:12.5px;font-weight:700;color:#B8490C;text-decoration:none;white-space:nowrap">Tout voir →</a>
+        </div>
+        <p style="color:#8A7C68;font-size:14px;margin:0 0 20px">Conversations à écouter en marchant.</p>
+
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ podcastItems }}" as="item" hint-placeholder-count="3">
+            <a href="Article.dc.html" style="display:flex;align-items:center;gap:18px;text-decoration:none;color:inherit;padding:17px 4px;border-top:1px solid #E4D5BE">
+              <span style="width:44px;height:44px;flex:0 0 44px;border-radius:50%;background:#FF6A1A;display:flex;align-items:center;justify-content:center"><span style="width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid #fff;margin-left:3px"></span></span>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#B8490C;margin-bottom:4px">{{ item.category }}</div>
+                <div style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:19px;color:#1B1712">{{ item.title }}</div>
+              </div>
+              <span style="font-size:12.5px;font-weight:600;color:#6E6259;background:#FFFFFF;padding:6px 13px;border-radius:999px;white-space:nowrap;flex:0 0 auto">{{ item.duration }}</span>
+              <span style="font-size:12.5px;color:#8A7C68;white-space:nowrap;flex:0 0 auto">{{ item.date }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COURS (compact tracking rows) ================= -->
+    <section id="cours" style="margin:56px 0 8px">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap">
+        <span style="width:9px;height:9px;border-radius:2px;background:#FF6A1A;display:inline-block;flex:0 0 auto"></span>
+        <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Cours</h2>
+        <span style="height:1px;background:#EAE0D2;flex:1"></span>
+        <a href="Liste.dc.html" style="font-size:12.5px;font-weight:700;color:#B8490C;text-decoration:none;white-space:nowrap">Tout voir →</a>
+      </div>
+      <p style="color:#A89C8F;font-size:14px;margin:0 0 12px">Ce que j’apprends, suivi à la note près.</p>
+
+      <div style="display:flex;flex-direction:column;border-top:1px solid #EAE0D2">
+        <sc-for list="{{ courseItems }}" as="item" hint-placeholder-count="3">
+          <a href="Article.dc.html" style="display:flex;align-items:center;gap:18px;text-decoration:none;color:inherit;padding:16px 4px;border-bottom:1px solid #EAE0D2">
+            <div style="flex:1;min-width:0">
+              <span style="display:inline-block;font-size:10.5px;font-weight:700;color:#B8490C;background:#FDE6D2;padding:3px 9px;border-radius:999px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">{{ item.platform }}</span>
+              <div style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:18px;color:#1B1712">{{ item.title }}</div>
+            </div>
+            <sc-if value="{{ item.hasProgress }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:center;gap:10px;flex:0 0 auto">
+                <div style="width:110px;height:6px;background:#F2E8D9;border-radius:999px;overflow:hidden"><div style="height:100%;background:#FF6A1A;border-radius:999px;width:{{ item.progressPct }}"></div></div>
+                <span style="font-size:12.5px;font-weight:700;color:#6E6259;width:34px">{{ item.progressLabel }}</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ item.noProgress }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:12.5px;font-weight:600;color:#A89C8F;flex:0 0 auto">{{ item.moduleLabel }}</span>
+            </sc-if>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section style="margin:64px 0 20px">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
+        <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#6E6259;margin:0">Des questions ?</h2>
+        <span style="height:1px;background:#EAE0D2;flex:1"></span>
+      </div>
+      <div>
+        <details style="border-bottom:1px solid #EAE0D2">
+          <summary style="list-style:none;cursor:pointer;padding:19px 42px 19px 2px;position:relative;font-weight:600;font-size:16.5px;color:#1B1712" style-after="content:'+';position:absolute;right:2px;top:15px;width:28px;height:28px;border:1px solid #EAE0D2;border-radius:50%;display:grid;place-items:center;font-size:17px;color:#1B1712;background:#FFFFFF">Pourquoi « Elle » tourne sur un téléphone&nbsp;?</summary>
+          <div style="padding:0 42px 22px 2px;color:#6E6259;font-size:15px;line-height:1.6;max-width:64ch">Parce qu’un serveur dans la poche change la façon d’écrire&nbsp;: plus besoin d’attendre d’être devant un ordinateur pour publier une note.</div>
+        </details>
+        <details style="border-bottom:1px solid #EAE0D2">
+          <summary style="list-style:none;cursor:pointer;padding:19px 42px 19px 2px;position:relative;font-weight:600;font-size:16.5px;color:#1B1712" style-after="content:'+';position:absolute;right:2px;top:15px;width:28px;height:28px;border:1px solid #EAE0D2;border-radius:50%;display:grid;place-items:center;font-size:17px;color:#1B1712;background:#FFFFFF">Comment sont classés les contenus&nbsp;?</summary>
+          <div style="padding:0 42px 22px 2px;color:#6E6259;font-size:15px;line-height:1.6;max-width:64ch">Par type&nbsp;— Blog, Projets, Podcasts, Cours. La page Library remonte d’abord les plus récents, tous types confondus, puis liste le reste par catégorie.</div>
+        </details>
+        <details style="border-bottom:1px solid #EAE0D2">
+          <summary style="list-style:none;cursor:pointer;padding:19px 42px 19px 2px;position:relative;font-weight:600;font-size:16.5px;color:#1B1712" style-after="content:'+';position:absolute;right:2px;top:15px;width:28px;height:28px;border:1px solid #EAE0D2;border-radius:50%;display:grid;place-items:center;font-size:17px;color:#1B1712;background:#FFFFFF">Les agents peuvent-ils publier à ma place&nbsp;?</summary>
+          <div style="padding:0 42px 22px 2px;color:#6E6259;font-size:15px;line-height:1.6;max-width:64ch">Non&nbsp;— un agent peut proposer et structurer un brouillon pendant la conversation, mais rien n’est jamais publié automatiquement.</div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,140px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1100}}">
+class Component extends DCLogic {
+  renderVals(){
+    const blogItems = [
+      { title:"Pourquoi j’ai quitté Notion pour un carnet fait main", category:"Réflexion",
+        excerpt:"Ce qui se perd quand on écrit dans un outil qu’on ne contrôle pas — et ce qu’on regagne à héberger ses propres mots.",
+        date:"Il y a 3 jours", readTime:"4 min", phLabel:"COUVERTURE · BLOG" },
+      { title:"Ce que Termux m’a appris sur la sobriété technique", category:"Outils",
+        excerpt:"Faire tourner un serveur entier dans la poche oblige à couper le superflu — et c’est une bonne discipline.",
+        date:"Il y a 12 jours", readTime:"6 min", phLabel:"COUVERTURE · BLOG" },
+      { title:"Écrire tous les jours, même mal", category:"Discipline",
+        excerpt:"Un brouillon publié vaut mieux qu’un chef-d’œuvre resté dans un tiroir. Notes sur la régularité.",
+        date:"Il y a 19 jours", readTime:"3 min", phLabel:"COUVERTURE · BLOG" }
+    ];
+    const projectItems = [
+      { title:"Elle — un journal qui tourne sur un téléphone", stack:"NODE · SQLITE",
+        excerpt:"Le site et son atelier de rédaction, sans dépendance obligatoire, pensés pour Termux.",
+        phLabel:"APERÇU · PROJET" },
+      { title:"Agents de rédaction pour l’Atelier", stack:"PYTHON · MCP",
+        excerpt:"Quatre agents spécialisés qui proposent un brouillon structuré pendant la conversation.",
+        phLabel:"APERÇU · PROJET" }
+    ];
+    const podcastItems = [
+      { title:"Cadence — livrer petit et souvent", category:"Podcast", duration:"34:12", date:"Il y a 8 j" },
+      { title:"Auto-hébergement et sobriété numérique", category:"Podcast", duration:"41:05", date:"Il y a 21 j" },
+      { title:"Écrire pour soi d’abord", category:"Podcast", duration:"22:47", date:"Il y a 33 j" }
+    ];
+    const courseItems = [
+      { title:"Notes de cours — Design de systèmes", platform:"MOOC", hasProgress:true, noProgress:false, progressPct:"62%", progressLabel:"62%" },
+      { title:"Créer un moteur de blocs d’édition", platform:"Cours perso", hasProgress:false, noProgress:true, moduleLabel:"4 modules" },
+      { title:"Notes — Bases de données embarquées", platform:"Coursera", hasProgress:true, noProgress:false, progressPct:"28%", progressLabel:"28%" }
+    ];
+    return { blogItems, projectItems, podcastItems, courseItems };
+  }
+}
+
+</script>
+</body>
+</html>

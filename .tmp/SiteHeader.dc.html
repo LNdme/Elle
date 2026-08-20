@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<header style="position:sticky;top:0;z-index:30;background:color-mix(in srgb, #FAF6EF 88%, transparent);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid #EAE0D2;font-family:'Outfit',system-ui,-apple-system,sans-serif">
+  <div style="max-width:1180px;margin:0 auto;padding:16px 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px">
+    <div style="justify-self:start;display:flex;align-items:center;gap:8px">
+      <button style="width:38px;height:38px;display:grid;place-items:center;border:1px solid #EAE0D2;background:#FFFFFF;border-radius:50%;color:#1B1712;font-size:14px;box-shadow:0 1px 2px rgba(26,22,19,.06)">&#9789;</button>
+    </div>
+    <a href="Home.dc.html" style="justify-self:center;font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:700;font-size:30px;letter-spacing:-.5px;line-height:1;text-decoration:none;color:#1B1712">E<span style="color:#FF6A1A">.</span></a>
+    <div style="justify-self:end;display:flex;align-items:center;gap:10px">
+      <a href="Agents.dc.html" style="font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:9px 16px;border:1px solid #1B1712;border-radius:999px;color:#1B1712">Atelier</a>
+    </div>
+  </div>
+  <nav style="border-top:1px solid #EAE0D2">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;display:flex;gap:2px;overflow-x:auto">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="6">
+        <a href="{{ item.href }}" style="{{ item.style }}">{{ item.label }}</a>
+      </sc-for>
+    </div>
+  </nav>
+</header>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:112},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;library&quot;,&quot;blog&quot;,&quot;projects&quot;,&quot;podcasts&quot;,&quot;courses&quot;]}}">
+class Component extends DCLogic {
+  renderVals(){
+    const active = this.props.active || "home";
+    const base = "white-space:nowrap;text-decoration:none;font-weight:600;font-size:13.5px;padding:15px 13px;border-bottom:2px solid transparent;display:inline-block;";
+    const items = [
+      { key:"home", label:"Accueil", href:"Home.dc.html" },
+      { key:"library", label:"Library", href:"Library.dc.html" },
+      { key:"blog", label:"Blog", href:"Liste.dc.html" },
+      { key:"projects", label:"Projets", href:"Liste.dc.html" },
+      { key:"podcasts", label:"Podcasts", href:"Liste.dc.html" },
+      { key:"courses", label:"Cours", href:"Liste.dc.html" }
+    ];
+    const navItems = items.map(it => ({
+      label: it.label,
+      href: it.href,
+      style: base + (it.key === active ? "color:#1B1712;border-bottom-color:#FF6A1A;" : "color:#6E6259;")
+    }));
+    return { navItems };
+  }
+}
+
+</script>
+</body>
+</html>

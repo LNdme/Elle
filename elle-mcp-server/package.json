@@ -1,0 +1,16 @@
+{
+  "name": "elle-mcp-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serveur MCP qui expose le contenu d'Elle (create_draft, list_content, get_content, search_content) à tout client MCP : agents ADK, Claude Desktop, etc.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "dotenv": "^16.4.0",
+    "express": "^5.2.1",
+    "zod": "^4.4.3"
+  }
+}

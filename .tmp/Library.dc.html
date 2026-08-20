@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#FAF6EF}</style>
+</helmet>
+<div data-screen-label="Library" style="background:#FAF6EF;min-height:100vh;font-family:'Outfit',system-ui,-apple-system,sans-serif;color:#1B1712">
+
+  <dc-import name="SiteHeader" active="library" hint-size="100%,112px"></dc-import>
+
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px 40px">
+
+    <!-- ================= INTRO ================= -->
+    <section style="padding:64px 0 30px;text-align:center">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FF6A1A;margin-bottom:16px">Elle</div>
+      <h1 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-.5px;margin:0">Library</h1>
+      <p style="color:#6E6259;font-size:17px;line-height:1.6;max-width:52ch;margin:18px auto 26px">Le meilleur du blog, des projets, des podcasts et des cours&nbsp;— les nouveautés en premier, tout le reste classé par type.</p>
+      <div style="max-width:440px;margin:0 auto">
+        <input type="text" value="{{ query }}" onChange="{{ onSearchInput }}" placeholder="Rechercher un article, un projet, un épisode…" style="width:100%;padding:13px 18px;border:1px solid #EAE0D2;background:#FFFFFF;border-radius:11px;font-size:14.5px;color:#1B1712;font-family:'Outfit',sans-serif;box-sizing:border-box"/>
+      </div>
+    </section>
+
+    <!-- ================= SEARCH RESULTS (shown while typing) ================= -->
+    <sc-if value="{{ isSearching }}" hint-placeholder-val="{{ false }}">
+      <section style="margin:12px 0 40px">
+        <div style="font-size:13px;color:#A89C8F;margin-bottom:18px">{{ resultsLabel }}</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+          <sc-for list="{{ searchResults }}" as="item" hint-placeholder-count="3">
+            <a href="Article.dc.html" style="text-decoration:none;color:inherit;background:#FFFFFF;border:1px solid #EAE0D2;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(26,22,19,.04)">
+              <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:10px">{{ item.phLabel }}</div>
+              <div style="padding:15px 16px 18px">
+                <span style="display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#B8490C;background:#FDE6D2;padding:3px 9px;border-radius:999px;margin-bottom:9px">{{ item.typeTag }}</span>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:18px;line-height:1.2;margin:0 0 8px">{{ item.title }}</h3>
+                <div style="color:#A89C8F;font-size:12px">{{ item.metaLine }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= BROWSE (default) ================= -->
+    <sc-if value="{{ isBrowsing }}" hint-placeholder-val="{{ true }}">
+      <div>
+
+      <!-- Featured -->
+      <section style="margin:8px 0 20px">
+        <a href="Article.dc.html" style="display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:36px;align-items:center;text-decoration:none;color:inherit;background:#FFFFFF;border:1px solid #EAE0D2;border-radius:18px;overflow:hidden;padding:14px">
+          <div style="aspect-ratio:16/11;border-radius:12px;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:11px">{{ featured.phLabel }}</div>
+          <div style="padding:10px 22px 10px 0">
+            <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FF6A1A;margin-bottom:10px">{{ featured.kicker }}</span>
+            <h2 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.14;margin:0 0 14px">{{ featured.title }}</h2>
+            <p style="color:#6E6259;font-size:15px;line-height:1.6;margin:0 0 16px">{{ featured.excerpt }}</p>
+            <div style="color:#A89C8F;font-size:13px;font-weight:500">{{ featured.metaLine }}</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- Recently added -->
+      <section style="margin:0 0 50px">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:18px">
+          <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Récemment ajoutés</h2>
+          <span style="height:1px;background:#EAE0D2;flex:1"></span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+          <sc-for list="{{ recentThree }}" as="item" hint-placeholder-count="3">
+            <a href="Article.dc.html" style="text-decoration:none;color:inherit;background:#FFFFFF;border:1px solid #EAE0D2;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(26,22,19,.04)">
+              <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:10px">{{ item.phLabel }}</div>
+              <div style="padding:15px 16px 18px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FF6A1A">{{ item.kicker }}</span>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:18px;line-height:1.2;margin:7px 0 8px">{{ item.title }}</h3>
+                <div style="color:#A89C8F;font-size:12px">{{ item.metaLine }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      <div style="height:1px;background:#EAE0D2;margin:0 0 50px"></div>
+
+      <!-- Blog grid -->
+      <section style="margin:0 0 50px">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
+          <span style="width:9px;height:9px;border-radius:50%;background:#FF6A1A;display:inline-block"></span>
+          <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Blog</h2>
+          <span style="height:1px;background:#EAE0D2;flex:1"></span>
+          <a href="Liste.dc.html" style="font-size:12.5px;font-weight:700;color:#B8490C;text-decoration:none">Tout voir →</a>
+        </div>
+        <p style="color:#A89C8F;font-size:14px;margin:0 0 20px">Réflexions et notes d’apprentissage.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+          <sc-for list="{{ blogGrid }}" as="item" hint-placeholder-count="4">
+            <a href="Article.dc.html" style="text-decoration:none;color:inherit;background:#FFFFFF;border:1px solid #EAE0D2;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(26,22,19,.04)">
+              <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:10px">{{ item.phLabel }}</div>
+              <div style="padding:15px 16px 18px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FF6A1A">{{ item.kicker }}</span>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:18px;line-height:1.2;margin:7px 0 8px">{{ item.title }}</h3>
+                <div style="color:#A89C8F;font-size:12px">{{ item.metaLine }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- Projets grid -->
+      <section style="margin:0 0 50px">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
+          <span style="width:9px;height:9px;background:#FF6A1A;display:inline-block;transform:rotate(45deg)"></span>
+          <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Projets</h2>
+          <span style="height:1px;background:#EAE0D2;flex:1"></span>
+          <a href="Liste.dc.html" style="font-size:12.5px;font-weight:700;color:#B8490C;text-decoration:none">Tout voir →</a>
+        </div>
+        <p style="color:#A89C8F;font-size:14px;margin:0 0 20px">Ce que je construis, du prototype au produit.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+          <sc-for list="{{ projectGrid }}" as="item" hint-placeholder-count="3">
+            <a href="Article.dc.html" style="text-decoration:none;color:inherit;background:#FFFFFF;border:1px solid #EAE0D2;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(26,22,19,.04)">
+              <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:10px">{{ item.phLabel }}</div>
+              <div style="padding:15px 16px 18px">
+                <span style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.04em;color:#B8490C;background:#FDE6D2;padding:3px 9px;border-radius:999px;margin-bottom:9px">{{ item.kicker }}</span>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:18px;line-height:1.2;margin:0 0 8px">{{ item.title }}</h3>
+                <div style="color:#A89C8F;font-size:12px">{{ item.metaLine }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- Podcasts grid -->
+      <section style="margin:0 0 50px">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
+          <span style="width:16px;height:16px;border-radius:50%;background:#FF6A1A;display:inline-flex;align-items:center;justify-content:center"><span style="width:0;height:0;border-top:3.5px solid transparent;border-bottom:3.5px solid transparent;border-left:6px solid #fff;margin-left:1px"></span></span>
+          <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Podcasts</h2>
+          <span style="height:1px;background:#EAE0D2;flex:1"></span>
+          <a href="Liste.dc.html" style="font-size:12.5px;font-weight:700;color:#B8490C;text-decoration:none">Tout voir →</a>
+        </div>
+        <p style="color:#A89C8F;font-size:14px;margin:0 0 20px">Conversations à écouter en marchant.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+          <sc-for list="{{ podcastGrid }}" as="item" hint-placeholder-count="3">
+            <a href="Article.dc.html" style="text-decoration:none;color:inherit;background:#FFFFFF;border:1px solid #EAE0D2;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(26,22,19,.04)">
+              <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:10px">{{ item.phLabel }}</div>
+              <div style="padding:15px 16px 18px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FF6A1A">{{ item.kicker }}</span>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:18px;line-height:1.2;margin:7px 0 8px">{{ item.title }}</h3>
+                <div style="color:#A89C8F;font-size:12px">{{ item.metaLine }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- Cours grid -->
+      <section style="margin:0 0 20px">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
+          <span style="width:9px;height:9px;border-radius:2px;background:#FF6A1A;display:inline-block"></span>
+          <h2 style="font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B1712;margin:0">Cours</h2>
+          <span style="height:1px;background:#EAE0D2;flex:1"></span>
+          <a href="Liste.dc.html" style="font-size:12.5px;font-weight:700;color:#B8490C;text-decoration:none">Tout voir →</a>
+        </div>
+        <p style="color:#A89C8F;font-size:14px;margin:0 0 20px">Ce que j’apprends, suivi à la note près.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+          <sc-for list="{{ courseGrid }}" as="item" hint-placeholder-count="3">
+            <a href="Article.dc.html" style="text-decoration:none;color:inherit;background:#FFFFFF;border:1px solid #EAE0D2;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(26,22,19,.04)">
+              <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F2E8D9,#F2E8D9 10px,#FFFFFF 10px,#FFFFFF 20px);display:flex;align-items:center;justify-content:center;color:#A89C8F;font-family:'JetBrains Mono',monospace;font-size:10px">{{ item.phLabel }}</div>
+              <div style="padding:15px 16px 18px">
+                <span style="display:inline-block;font-size:10.5px;font-weight:700;color:#B8490C;background:#FDE6D2;padding:3px 9px;border-radius:999px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:9px">{{ item.kicker }}</span>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif;font-style:italic;font-weight:600;font-size:18px;line-height:1.2;margin:0 0 8px">{{ item.title }}</h3>
+                <div style="color:#A89C8F;font-size:12px">{{ item.metaLine }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      </div>
+    </sc-if>
+
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,140px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1200}}">
+class Component extends DCLogic {
+  state = { query: "" };
+
+  onSearchInput = (e) => { this.setState({ query: e.target.value }); };
+
+  renderVals(){
+    const featured = {
+      typeTag:"Blog", kicker:"Blog · Réflexion", title:"Pourquoi j’ai quitté Notion pour un carnet fait main",
+      excerpt:"Ce qui se perd quand on écrit dans un outil qu’on ne contrôle pas — et ce qu’on regagne à héberger ses propres mots sur une base qu’on peut sauvegarder soi-même.",
+      metaLine:"Il y a 3 jours · 4 min de lecture", phLabel:"COUVERTURE · BLOG"
+    };
+    const recentThree = [
+      { typeTag:"Projet", kicker:"Projet", title:"Agents de rédaction pour l’Atelier", metaLine:"Il y a 6 jours", phLabel:"APERÇU · PROJET" },
+      { typeTag:"Podcast", kicker:"Podcast", title:"Cadence — livrer petit et souvent", metaLine:"Il y a 8 jours · 34:12", phLabel:"COUVERTURE · PODCAST" },
+      { typeTag:"Cours", kicker:"Cours", title:"Notes de cours — Design de systèmes", metaLine:"Il y a 9 jours · 62% terminé", phLabel:"COUVERTURE · COURS" }
+    ];
+    const blogGrid = [
+      { title:"Pourquoi j’ai quitté Notion pour un carnet fait main", kicker:"Réflexion", metaLine:"Il y a 3 jours · 4 min", phLabel:"COUVERTURE · BLOG" },
+      { title:"Ce que Termux m’a appris sur la sobriété technique", kicker:"Outils", metaLine:"Il y a 12 jours · 6 min", phLabel:"COUVERTURE · BLOG" },
+      { title:"Écrire tous les jours, même mal", kicker:"Discipline", metaLine:"Il y a 19 jours · 3 min", phLabel:"COUVERTURE · BLOG" },
+      { title:"SQLite intégré à Node : la fin des dépendances inutiles", kicker:"Technique", metaLine:"Il y a 27 jours · 7 min", phLabel:"COUVERTURE · BLOG" }
+    ];
+    const projectGrid = [
+      { title:"Agents de rédaction pour l’Atelier", kicker:"PYTHON · MCP", metaLine:"Il y a 6 jours", phLabel:"APERÇU · PROJET" },
+      { title:"Elle — un journal qui tourne sur un téléphone", kicker:"NODE · SQLITE", metaLine:"Il y a 15 jours", phLabel:"APERÇU · PROJET" },
+      { title:"Minuteur de rédaction pour l’Atelier", kicker:"VANILLA JS", metaLine:"Il y a 24 jours", phLabel:"APERÇU · PROJET" }
+    ];
+    const podcastGrid = [
+      { title:"Cadence — livrer petit et souvent", kicker:"Podcast", metaLine:"34:12 · Il y a 8 jours", phLabel:"COUVERTURE · PODCAST" },
+      { title:"Auto-hébergement et sobriété numérique", kicker:"Podcast", metaLine:"41:05 · Il y a 21 jours", phLabel:"COUVERTURE · PODCAST" },
+      { title:"Écrire pour soi d’abord", kicker:"Podcast", metaLine:"22:47 · Il y a 33 jours", phLabel:"COUVERTURE · PODCAST" }
+    ];
+    const courseGrid = [
+      { title:"Notes de cours — Design de systèmes", kicker:"MOOC", metaLine:"62% terminé · Il y a 9 jours", phLabel:"COUVERTURE · COURS" },
+      { title:"Créer un moteur de blocs d’édition", kicker:"Cours perso", metaLine:"4 modules · Il y a 30 jours", phLabel:"COUVERTURE · COURS" },
+      { title:"Notes — Bases de données embarquées", kicker:"Coursera", metaLine:"28% terminé · Il y a 38 jours", phLabel:"COUVERTURE · COURS" }
+    ];
+
+    const all = [
+      ...blogGrid.map(i => ({ ...i, typeTag:"Blog" })),
+      ...projectGrid.map(i => ({ ...i, typeTag:"Projet" })),
+      ...podcastGrid.map(i => ({ ...i, typeTag:"Podcast" })),
+      ...courseGrid.map(i => ({ ...i, typeTag:"Cours" }))
+    ];
+    const q = (this.state.query || "").trim().toLowerCase();
+    const isSearching = q.length > 0;
+    const searchResults = isSearching ? all.filter(i => (i.title + " " + i.kicker).toLowerCase().indexOf(q) >= 0) : [];
+    const resultsLabel = searchResults.length
+      ? searchResults.length + " résultat" + (searchResults.length > 1 ? "s" : "") + " pour « " + this.state.query + " »"
+      : "Aucun résultat pour « " + this.state.query + " »";
+
+    return {
+      query: this.state.query,
+      onSearchInput: this.onSearchInput,
+      isSearching, isBrowsing: !isSearching,
+      searchResults, resultsLabel,
+      featured, recentThree, blogGrid, projectGrid, podcastGrid, courseGrid
+    };
+  }
+}
+
+</script>
+</body>
+</html>

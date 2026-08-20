@@ -1,0 +1,13 @@
+{
+  "name": "elle-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Elle — blog magazine (Node + SQLite), pensé pour fonctionner dans Termux sur Android.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "optionalDependencies": {
+    "better-sqlite3": "^11.8.1"
+  }
+}
