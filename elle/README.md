@@ -28,25 +28,42 @@ Changer le port : `PORT=8080 node server.js`
 
 ---
 
-## Déploiement en ligne (Render)
+## Déploiement en ligne
 
 Le site est un **serveur Node de longue durée** avec une base **SQLite en
-fichier** : il lui faut un hébergeur avec disque persistant. Render convient.
+fichier** : il lui faut un hébergeur avec disque persistant. La base
+`elle/data/elle.db` et les `.env` ne sont **pas** versionnés — `seed()`
+recrée le contenu de démo au premier lancement.
 
-1. Poussez ce dépôt sur GitHub (la base `elle/data/elle.db` et les fichiers
-   `.env` ne sont **pas** versionnés — `seed()` recrée le contenu de démo).
-2. Dashboard Render → **New → Blueprint** → connectez le dépôt. Le fichier
-   `render.yaml` à la racine décrit le service `elle` ; un disque persistant
-   (`elle/data`) est prévu — il nécessite un plan payant Render (le plan
-   gratuit redémarre de zéro à chaque redéploiement).
-3. Déployé, ouvrez `https://<service>.onrender.com/admin` : le **premier
-   accès** crée le compte administrateur.
-4. Réglages recommandés dans l'onglet Environment du service :
-   - `AUTH_SECRET` : une longue chaîne aléatoire (sécurise les sessions).
-   - `ANTHROPIC_API_KEY` (facultatif) si vous voulez l'onglet « Rapide ».
+> Node ≥ 22.13 requis (SQLite intégré sans drapeau).
 
-> Node ≥ 22.13 requis (SQLite intégré sans drapeau). Le `render.yaml` fixe
-> `NODE_VERSION=22.13.0`.
+### Fly.io (persistance incluse, recommandé)
+
+```bash
+fly launch --config fly.toml   # depuis la racine du dépôt
+fly volumes create elle_data --region cdg --size 1
+fly deploy
+fly secrets set AUTH_SECRET=$(openssl rand -hex 32)
+# facultatif : fly secrets set ANTHROPIC_API_KEY=sk-ant-...
+```
+`fly.toml` monte le volume `elle_data` sur `/app/data` — le contenu et les
+comptes survivent aux redéploiements. Ouvrez ensuite
+`https://<app>.fly.dev/admin` pour créer le compte admin.
+
+### Railway (alternative, volume gratuit)
+
+1. Railway → New Project → Deploy from GitHub → sélectionnez le dépôt.
+2. Service → Settings → **Root Directory** = `elle`, **Start Command** = `npm start`.
+3. Variables → `AUTH_SECRET` (longue chaîne aléatoire), `ANTHROPIC_API_KEY` si besoin.
+4. Variables → Add Volume → mount `/app/data` (ou `/app/elle/data` selon Root Directory).
+5. Deploy. Premier accès sur `https://<service>.up.railway.app/admin`.
+
+### Render (Blueprint)
+
+Dashboard Render → **New → Blueprint** → connectez le dépôt. `render.yaml`
+décrit le service `elle` avec disque sur `elle/data` — **plan payant requis**
+pour le disque (en plan gratuit, la DB repart de `seed()` à chaque deploy).
+Ouvrez `https://<service>.onrender.com/admin` pour créer le compte admin.
 
 ---
 
