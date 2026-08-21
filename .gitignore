@@ -15,3 +15,5 @@ node_modules/
 *.log
 .venv/
 __pycache__/
+dist/
+.aspire/
